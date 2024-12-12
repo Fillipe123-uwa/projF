@@ -1,0 +1,27 @@
+
+
+a {
+    text-decoration: none;
+    font-size: 24pt;
+    cursor: pointer;
+}
+
+td {
+    align-content: center;
+}
+
+btn-menu {
+    float: right;
+    transform: translateY(50px);
+}
+
+botaoss {
+    float: right;
+    transform: translateY(-50px);
+}
+
+
+
+
+
+

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> PROJ </title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/bootstrap.min.css"/>
+        <link rel="icon" href="img/logotipo.png"/>
+        <link rel="stylesheet" href="css/bootstrap.rtl.css" type="text/css">
+
+    </head>
+    <body style="background-color: #343030;">
+
+        <div class="mt-4 text-center container col-sm-10 col-md-5">
+            <h1 style="color: #e13f3d" > Criar conta </h1>
+
+            <form action="usuario-controller" method="post" class="validar" novalidate >
+
+                <input type="hidden" name="pagina" value="cadastro">
+
+                <div class="form-floating mt-3">
+                    <input type="text" style="background-color: #d9d9d9;" id="nome" name="nome" class="form-control" placeholder="Nome completo" required minlength="6" >
+                    <label for="nome"> nome </label>
+
+                    <small class="invalid-feedback text-start">
+                        O nome precisa conter no mínimo 6 caracteres. 
+                    </small>
+                </div>
+
+                <div class="form-floating mt-3">
+                    <input type="email" style="background-color: #d9d9d9;" id="email" name="email" class="form-control" placeholder="email@exemplo.com" required >
+                    <label for="email"> Email </label>
+
+                    <small class="invalid-feedback text-start">
+                        O endereço precisa conter '@' e um domínio (exemplo@email.com). 
+                    </small>
+                </div>
+
+                <div class="form-floating mt-3">
+                    <input type="text" id="cpf" name="cpf" class="form-control" placeholder="" required>
+                    <label for="cpf"> Cpf </label>
+                </div>
+
+                <div class="form-floating mt-3">
+                    <input type="password" style="background-color: #d9d9d9;" id="senha" name="senha" class="form-control" placeholder="Senha" required minlength="6" pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[^\w\s]).{6,}$" onkeyup="validarSenha()" >
+                    <label for="senha"> Criar senha </label>
+
+                    <div class="invalid-feedback text-start">    
+                        <small>
+                            A senha precisa ter:
+                        </small>
+                        <ul class="text-start">
+                            <li id="minimo"><small>No mínimo, 6 caracteres</small></li>
+                            <li id="maiuscula"><small>Letras MAIÚSCULAS</small></li>
+                            <li id="especial"><small>Caracteres especiais</small></li>
+                            <li id="numero"><small>Números</small></li>
+                        </ul>
+                    </div>
+
+                    <small class="valid-feedback text-start">
+                        Senha ok!
+                    </small>
+                </div>
+
+                <div class="form-floating mt-4">
+                    <input type="password" style="background-color: #d9d9d9;" id="confere-senha" name="confere-senha" class="form-control" placeholder="" required minlength="6" onkeyup="validarSenha()" >
+                    <label for="confere-senha"> Confirmação da senha </label>
+
+                    <small class="invalid-feedback text-start">
+                        As senhas não são iguais.
+                    </small>
+                </div>
+
+                <div class="d-grid mt-4">
+                    <input type="submit" value="Criar" class="btn btn-secondary">
+                </div>
+
+            </form>
+
+
+        </div>
+
+
+        <script src="js/bootstrap.min.js"></script>
+
+        <script>
+
+                        const campoSenha = document.getElementById("senha");
+                        const campoConfSenha = document.getElementById("confere-senha");
+                        const minimo = document.getElementById("minimo");
+                        const maiuscula = document.getElementById("maiuscula");
+                        const especial = document.getElementById("especial");
+                        const numero = document.getElementById("numero");
+
+                        function validarSenha() {
+                            campoConfSenha.minLength = campoSenha.value.length;
+
+                            if (campoSenha.value === campoConfSenha.value) {
+                                campoConfSenha.classList.add("is-valid");
+                            } else {
+                                campoConfSenha.minLength = 10000;
+                            }
+
+                            (campoSenha.value.length >= 6) ? minimo.style.color = "green" : minimo.style.color = "red";
+                            (/[A-Z]/.test(campoSenha.value)) ? maiuscula.style.color = "green" : maiuscula.style.color = "red";
+                            (/[^\w\s]/.test(campoSenha.value)) ? especial.style.color = "green" : especial.style.color = "red";
+                            (/[\d]/.test(campoSenha.value)) ? numero.style.color = "green" : numero.style.color = "red";
+
+                        }
+
+        </script>
+
+        <script src="js/init-validation.js"></script>
+
+    </body>
+</html>
